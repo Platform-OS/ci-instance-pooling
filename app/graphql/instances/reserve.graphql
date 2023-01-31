@@ -1,0 +1,23 @@
+mutation update(
+  $id: ID!
+  $reserved_by: String!
+  $reserved_at: String!
+) {
+  record_update(
+    id: $id
+    record: {
+      table: "instance"
+      properties: [
+        { name: "available" value_boolean: false }
+        { name: "reserved_by" value: $reserved_by }
+        { name: "reserved_at" value: $reserved_at }
+      ]
+    }
+  ){
+    id
+    domain: property(name: "domain")
+    available: property_boolean(name: "available")
+    reserved_at: property_json(name: "reserved_at")
+    reserved_by: property(name: "reserved_by")
+  }
+}

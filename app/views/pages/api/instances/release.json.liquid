@@ -1,0 +1,16 @@
+---
+slug: api/instances/release
+method: delete
+---
+{% liquid
+  log context.params
+  function instance = 'lib/queries/instances/find_by_client', client: context.params.client, available: false
+
+  if instance
+    function command = 'lib/commands/instances/release', instance_id: instance.id
+    echo command
+  else
+    echo '{"error": "instance not found"}'
+  endif
+
+%}

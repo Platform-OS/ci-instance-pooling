@@ -1,0 +1,8 @@
+---
+method: post
+---
+{% liquid
+  function records = 'lib/queries/instances/search'
+
+  echo records.results | json
+%}
