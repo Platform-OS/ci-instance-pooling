@@ -1,12 +1,11 @@
 ---
-slug: api/instances/release
-method: delete
+slug: api/instances/test
+method: post
 ---
 {% liquid
   function auth = 'lib/commands/authenticate/call', token: context.headers.HTTP_AUTHORIZATION
   unless auth.valid
     include '401'
-    break
   endunless
 
   function instance = 'lib/queries/instances/find_by_client', client: context.params.client, available: false

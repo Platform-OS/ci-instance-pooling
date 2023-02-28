@@ -1,0 +1,11 @@
+{% liquid
+  assign c = '{"valid": false}' | parse_json
+
+  assign token = token |  regex_matches: "Bearer (.*)"
+
+  if context.constants["POS_CI_REPO_ACCESS_TOKEN"] == token[0][0]
+    hash_assign c['valid'] = true
+  endif
+
+  return c
+%}

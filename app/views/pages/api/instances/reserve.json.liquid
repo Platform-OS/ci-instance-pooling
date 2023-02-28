@@ -3,6 +3,13 @@ slug: api/instances/reserve
 method: post
 ---
 {% liquid
+  log context.params, type: "reserving"
+  function auth = 'lib/commands/authenticate/call', token: context.headers.HTTP_AUTHORIZATION
+  unless auth.valid
+    include '401'
+    break
+  endunless
+
   function instance = 'lib/queries/instances/find_by_client', client: context.params.client, available: false
   if instance
     response_status 503
