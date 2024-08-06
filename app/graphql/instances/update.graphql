@@ -17,6 +17,7 @@ mutation update(
   ){
     id
     domain: property(name: "domain")
+    pos_cli_token: property(name: "pos_cli_token")
     available: property_boolean(name: "available")
     reserved_at: property(name: "reserved_at")
     reserved_by: property(name: "reserved_by")

@@ -4,7 +4,9 @@ method: post
 ---
 {% liquid
   log context.params, type: "reserving"
+  log context.headers.HTTP_AUTHORIZATION, type: 'token'
   function auth = 'lib/commands/authenticate/call', token: context.headers.HTTP_AUTHORIZATION
+  log auth, type: 'auth'
   unless auth.valid
     include '401'
     break
@@ -18,9 +20,15 @@ method: post
     function instance = 'lib/queries/instances/find_available' reserved_by: context.params.client
     if instance
       function command = 'lib/commands/instances/reserve', reserved_by: context.params.client, instance_id: instance.id
-      function release = 'lib/commands/instances/release', instance_id: instance.id, reserved_by: context.params.client, delay: 45
 
-      echo command.domain
+      assign timeout = context.params.timeout | default: 45 | plus: 0
+      function release = 'lib/commands/instances/release', instance_id: instance.id, reserved_by: context.params.client, delay: timeout
+
+      if context.params.with_token
+        echo command
+      else
+        echo command.domain
+      endif
     else
       response_status 503
       echo '{"error": "no available instances"}'

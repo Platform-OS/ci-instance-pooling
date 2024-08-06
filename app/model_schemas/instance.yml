@@ -1,6 +1,7 @@
 name: instance
 properties:
   - name: domain
+  - name: pos_cli_token
   - name: reserved_by
   - name: reserved_at
   - name: available

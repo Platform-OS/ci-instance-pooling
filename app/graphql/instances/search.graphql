@@ -19,6 +19,7 @@ query search(
     results {
       id
       domain: property(name: "domain")
+      pos_cli_token: property(name: "pos_cli_token")
       reserved_by: property(name: "reserved_by")
       reserved_at: property(name: "reserved_at")
       available: property(name: "available")
