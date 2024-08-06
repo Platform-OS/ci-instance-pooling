@@ -1,0 +1,10 @@
+{% liquid
+  assign key = 30 | random_string
+
+  if context.constants.POS_CI_REPO_ACCESS_TOKEN == blank
+    function res = 'modules/core/commands/variable/set', name: 'POS_CI_REPO_ACCESS_TOKEN', value: key
+    log res, type: "POS_CI_REPO_ACCESS_TOKEN"
+  else
+    log "POS_CI_REPO_ACCESS_TOKEN already created, skipping"
+  endif
+%}
