@@ -1,7 +1,7 @@
 
 Endpoints:
 
-## Reserve - api/instances/reserve
+## Reserve - /api/instances/reserve
 
 ### Parameters:
 
