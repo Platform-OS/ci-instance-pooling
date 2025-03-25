@@ -1,4 +1,10 @@
 {% liquid
+  function auth = 'lib/commands/authenticate/call', token: context.headers.HTTP_AUTHORIZATION
+  unless auth.valid
+    include '401'
+    break
+  endunless
+
   function records = 'lib/queries/instances/search'
 
   echo records.results | json
