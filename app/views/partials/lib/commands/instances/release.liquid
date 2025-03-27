@@ -4,11 +4,11 @@
 
   {% background 'release-instance', delay: delay, instance_id: instance_id, reserved_by: reserved_by %}
 
-    {% function instance = 'lib/queries/instances/find_reserved', id: instance_id, client: reserved_by %}
+    {% function instance = 'lib/queries/instances/find_reserved', id: instance_id, reserved_by: reserved_by %}
     {% if instance.id %}
       {% function command = 'lib/commands/instances/release/call', instance_id: instance.id %}
     {% else %}
-    {% log instance_id, type: 'already released' %}
+      {% log instance_id, type: 'already released' %}
     {% endif %}
   {% endbackground %}
 
@@ -16,7 +16,7 @@
   {% log command %}
   {% log delay %}
 {% else %}
-  {% function command = 'lib/commands/instances/release/call', reserved_by: reserved_by, instance_id: instance_id %}
+  {% function command = 'lib/commands/instances/release/call', instance_id: instance_id %}
 {% endif %}
 
 {% return command %}
