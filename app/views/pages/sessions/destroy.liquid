@@ -1,0 +1,9 @@
+---
+method: delete
+slug: sessions
+---
+{% liquid 
+    session authenticated = null
+    redirect_to "/sessions/new"
+    %}
+

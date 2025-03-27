@@ -1,0 +1,19 @@
+---
+method: post
+slug: sessions
+---
+{% liquid 
+    session token = context.params.token
+    assign context.headers.HTTP_AUTHORIZATION = context.params.token
+    assign token = "Bearer " | append: context.params.token
+    function auth = 'lib/commands/authenticate/call', token: token
+
+    unless auth.valid
+      include '401'
+      break
+    endunless
+
+    session authenticated = "true"  
+    redirect_to "/"
+    %}
+
