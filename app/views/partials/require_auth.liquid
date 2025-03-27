@@ -1,0 +1,6 @@
+{% liquid 
+    unless context.session.authenticated == "true"
+        redirect_to '/sessions/new'
+        break
+    endunless
+    %}
