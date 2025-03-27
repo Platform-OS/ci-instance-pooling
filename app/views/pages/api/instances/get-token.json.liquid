@@ -9,11 +9,12 @@ method: post
     break
   endunless
 
-  function instance = 'lib/queries/instances/find_by_client', client: context.params.client, available: false
+  function instance = 'lib/queries/instances/find_by_client', reserved_by: context.params.client, available: false
 
   if instance
     echo instance.pos_cli_token
   else
+    response_status 404
     echo '{"error": "instance not found"}'
   endif
 

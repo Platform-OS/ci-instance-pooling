@@ -9,7 +9,7 @@ method: post
     break
   endunless
 
-  function instance = 'lib/queries/instances/find_by_client', client: context.params.client, available: false
+  function instance = 'lib/queries/instances/find_by_client', reserved_by: context.params.client, available: false
   if instance
     response_status 503
     echo '{"error": "Instance already reserved. Please release or wait for auto-realeasing"}'
