@@ -35,7 +35,7 @@
                     {% else %}
                         {% assign parts = result.reserved_by | split: "--" %}
                         {% assign jobUrl = "https://github.com/" | append: parts[0] | append: "/" | append: parts[1] | append: "/actions/runs/" | append: parts[2] %}
-                        <a href="{{ jobUrl }}" target="_blank">{{ url }}</a>
+                        <a href="{{ jobUrl }}" target="_blank">{{ jobUrl }}</a>
                     {% endif %}
                 </td>
                 <td>
