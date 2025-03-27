@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+td.available {
+    color: green;
+    font-weight: bold;
+}
+
+td.unavailable {
+    color: red;
+    font-weight: bold;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button.btn-available {
+    background-color: #2e8141;
+    width: 95px;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.reserve {
+    background-color: rgb(219, 30, 30);
+    width: 95px;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.btn-unavailable {
+    background-color: #5e615fe1;
+    width: 95px;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.reserve:hover {
+    background-color: rgb(184, 71, 71);
+}
+
+button.btn-available:hover {
+    background-color: #218838;
+}
+
+input {
+    width: 150px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+form.login {
+    text-align: center;
+    padding: 25px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0px 20px 50px rgba(25, 90, 5, 0.1);
+    margin: 300px 800px;
+
+
+}
