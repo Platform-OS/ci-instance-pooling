@@ -1,0 +1,10 @@
+---
+method: post
+slug: instances/release
+---
+
+{% liquid
+     include 'require_auth'
+     function _ = 'lib/commands/instances/release', instance_id: params.result_id
+     redirect_to '/'
+     %}
