@@ -32,6 +32,8 @@
                 <td>
                     {% if result.reserved_by == null %}
                         -
+                    {% elsif result.reserved_by == "reserved_by_admin" %}
+                        reserved by admin
                     {% else %}
                         {% assign parts = result.reserved_by | split: "--" %}
                         {% assign jobUrl = "https://github.com/" | append: parts[0] | append: "/" | append: parts[1] | append: "/actions/runs/" | append: parts[2] %}
@@ -40,12 +42,12 @@
                 </td>
                 <td>
                     {% if result.available == "true" %}
-                        <button class="btn-unavailable"><b>Unavailable</b></button>
+                        <button class="btn-unavailable">Unavailable</button>
                     {% else %}
                         <form action="/instances/release" method="POST">
                             <input type="hidden" name="result_id" value="{{ result.id }}">
                             <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
-                            <button class="btn-available" type="submit"><b>Release</b></button>
+                            <button class="btn-available" type="submit">Release</button>
                         </form>
                     {% endif %}
                 </td>
@@ -53,7 +55,7 @@
                     <form action="/instances/reserve" method="POST">
                         <input type="hidden" name="result_id" value="{{ result.id }}">
                         <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
-                        <button class="reserve" type="submit"><b>Reserve</b></button>
+                        <button class="reserve" type="submit">Reserve</button>
                     </form>
                 </td>
             </tr>
