@@ -6,7 +6,7 @@ liquid_check_mode: 'error'
 liquid_raise_mode: true
 require_table_for_record_delete_mutation: true
 safe_translate: true
-skip_elasticsearch: false
+skip_elasticsearch: true
 slug_exact_match: true
 websockets_require_csrf_token: true
 maintenance:
