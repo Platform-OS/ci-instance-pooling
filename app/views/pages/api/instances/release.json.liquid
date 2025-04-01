@@ -9,7 +9,7 @@ method: delete
     break
   endunless
 
-  function instance = 'lib/queries/instances/find_by_client', client: context.params.client, available: false
+  function instance = 'lib/queries/instances/find_by_client', reserved_by: context.params.client, available: false
 
   if instance
     function command = 'lib/commands/instances/release', instance_id: instance.id
