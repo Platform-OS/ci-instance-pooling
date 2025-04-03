@@ -88,7 +88,7 @@ jobs:
     timeout-minutes: 15
     env:
       CI: true
-      E2E_TEST_PASSWORD: ${{ secrets.E2E_TEST_PASSWORD }}
+      TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
       MPKIT_EMAIL: ${{ secrets.MPKIT_EMAIL }}
       MPKIT_URL: ${{ needs.reserve-ci-instance.outputs.mpkit-url }}
       HTML_ATTACHMENTS_BASE_URL: ${{ vars.HTML_ATTACHMENTS_BASE_URL }}
