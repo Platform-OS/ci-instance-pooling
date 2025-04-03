@@ -16,21 +16,21 @@ export const responses = {
     "instances": [
         {
             "available": "true",
-            "domain": "test-domain-example.com",
+            "domain": "ci-instance1.example.com",
             "pos_cli_token": "test",
             "reserved_at": null,
             "reserved_by": null
         },
         {
             "available": "true",
-            "domain": "test-domain2-example.com",
+            "domain": "ci-instance2.example.com",
             "pos_cli_token": "test",
             "reserved_at": null,
             "reserved_by": null
         },
         {
             "available": "true",
-            "domain": "test-domain3-example.com",
+            "domain": "ci-instance3.example.com",
             "pos_cli_token": "test",
             "reserved_at": null,
             "reserved_by": null
