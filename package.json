@@ -3,6 +3,7 @@
     "api-tests": "playwright test --project=api-tests"
   },
   "devDependencies": {
-    "@playwright/test": "^1.47.1"
+    "@playwright/test": "^1.47.1",
+    "@types/node": "^22.14.0"
   }
 }
