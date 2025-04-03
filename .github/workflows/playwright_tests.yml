@@ -76,9 +76,9 @@ jobs:
           MPKIT_TOKEN: ${{ steps.get-token.outputs.mpkit-token }}
         run: |
           set -eu
-          pos-cli data clean --auto-confirm --include-schema
           rm app/pos-modules.*
-          pos-cli deploy
+          ./tests/data/import/deploy.sh
+
 
   test:
     needs: ["reserve-ci-instance", "deploy"]
