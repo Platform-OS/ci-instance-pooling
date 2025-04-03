@@ -40,7 +40,7 @@ test.describe.parallel('Unauthorized user tests', () => {
 test.describe('Authorized user tests', () => {
     let reservedInstance: string | null = null;
 
-    test.skip(`user can access '/instances' endpoint`, async ({ request }) => {
+    test(`user can access '/instances' endpoint`, async ({ request }) => {
         const response = await request.get("/api/instances", {
             headers: {
                 "Authorization": `Bearer ${accessToken}`
