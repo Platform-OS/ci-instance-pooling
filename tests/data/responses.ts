@@ -17,21 +17,21 @@ export const responses = {
         {
             "available": "true",
             "domain": "ci-instance1.example.com",
-            "pos_cli_token": "test",
+            "pos_cli_token": "instance1-e9s12fksx",
             "reserved_at": null,
             "reserved_by": null
         },
         {
             "available": "true",
             "domain": "ci-instance2.example.com",
-            "pos_cli_token": "test",
+            "pos_cli_token": "instance2-l1sz3x21m",
             "reserved_at": null,
             "reserved_by": null
         },
         {
             "available": "true",
             "domain": "ci-instance3.example.com",
-            "pos_cli_token": "test",
+            "pos_cli_token": "instance1-e9s12fksx",
             "reserved_at": null,
             "reserved_by": null
         }
