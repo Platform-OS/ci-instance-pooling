@@ -1,5 +1,4 @@
 mutation create(
-  $available: Boolean
   $domain: String!
   $pos_cli_token: String!
 ) {
@@ -7,7 +6,7 @@ mutation create(
     record: {
       table: "instance"
       properties: [
-        { name: "available", value_boolean: $available }
+        { name: "available", value_boolean: true }
         { name: "domain", value: $domain }
         { name: "pos_cli_token", value: $pos_cli_token }
       ]
