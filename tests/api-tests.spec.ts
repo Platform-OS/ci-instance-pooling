@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { responses } from './data/responses';
 
-const accessToken = process.env.POS_CI_REPO_ACCESS_TOKEN;
+const accessToken = process.env.TEST_TOKEN;
 
 test.describe.parallel('Unauthorized user tests', () => {
     test(`user can't access '/instances' endpoint`, async ({ request }) => {
