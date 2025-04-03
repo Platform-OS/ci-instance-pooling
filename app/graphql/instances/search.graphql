@@ -3,6 +3,7 @@ query search(
   $reserved_by: String
   $available: Boolean
   $id: ID
+  $sort_order: SortOrderEnum = ASC
 ) {
   records(
     per_page: $limit
@@ -15,6 +16,7 @@ query search(
         { name: "reserved_by", value: $reserved_by }
       ]
     }
+    sort: [{ id: { order: $sort_order } }]
   ) {
     results {
       id

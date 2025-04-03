@@ -15,27 +15,8 @@
 ]
 {% endparse_json %}
 
-{% for instance in instances %}
-  {% graphql r, domain: instance.domain, pos_cli_token: instance.pos_cli_token %}
-    mutation create(
-    $domain: String!
-    $pos_cli_token: String!
-  ) {
-    record_create(
-      record: {
-        table: "instance"
-        properties: [
-          { name: "available", value_boolean: true }
-          { name: "domain", value: $domain }
-          { name: "pos_cli_token", value: $pos_cli_token }
-        ]
-      }
-    ) {
-      id
-      available: property_boolean(name: "available")
-      domain: property(name: "domain")
-      pos_cli_token: property(name: "pos_cli_token")
-    }
-  }
-  {% endgraphql %}
-{% endfor %}
+{% liquid 
+  for instance in instances
+    graphql r = 'instances/create', domain: instance.domain, pos_cli_token: instance.pos_cli_token
+  endfor
+  %}
