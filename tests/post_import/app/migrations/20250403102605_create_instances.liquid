@@ -1,0 +1,41 @@
+{% parse_json instances %}
+[
+  {
+    "domain": "ci-instance1.example.com",
+    "pos_cli_token": "instance1-e9s12fksx"
+  },
+  {
+    "domain": "ci-instance2.example.com",
+    "pos_cli_token": "instance2-l1sz3x21m"
+  },
+  {
+    "domain": "ci-instance3.example.com",
+    "pos_cli_token": "instance3-pq1w2s3f4"
+  }
+]
+{% endparse_json %}
+
+{% for instance in instances %}
+  {% graphql r, domain: instance.domain, pos_cli_token: instance.pos_cli_token %}
+    mutation create(
+    $domain: String!
+    $pos_cli_token: String!
+  ) {
+    record_create(
+      record: {
+        table: "instance"
+        properties: [
+          { name: "available", value_boolean: true }
+          { name: "domain", value: $domain }
+          { name: "pos_cli_token", value: $pos_cli_token }
+        ]
+      }
+    ) {
+      id
+      available: property_boolean(name: "available")
+      domain: property(name: "domain")
+      pos_cli_token: property(name: "pos_cli_token")
+    }
+  }
+  {% endgraphql %}
+{% endfor %}
