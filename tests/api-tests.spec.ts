@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 import { responses } from './data/responses';
 
 const accessToken = process.env.TEST_TOKEN;
+console.log("Access token:" + accessToken);
 
 test.describe.parallel('Unauthorized user tests', () => {
     test(`user can't access '/instances' endpoint`, async ({ request }) => {
