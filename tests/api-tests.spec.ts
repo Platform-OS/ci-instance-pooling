@@ -137,9 +137,6 @@ test.describe('Authorized user tests', () => {
                 operation: 'release'
             });
         });
-
-        await test.step(``, async () => {;
-        });
     });
 });
 
