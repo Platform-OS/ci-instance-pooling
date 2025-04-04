@@ -1,0 +1,11 @@
+---
+method: post
+slug: instances/delete
+---
+
+{% liquid
+    include 'require_auth'
+
+    function _ = 'lib/commands/instances/delete', id: context.params.id
+    redirect_to '/' 
+    %}
