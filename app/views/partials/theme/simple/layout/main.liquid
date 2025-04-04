@@ -1,14 +1,14 @@
-
 <table>
     <h2>Pooling results of <i>{{ context.location.host }}</i></h2>
     <thead>
         <tr>
-            <th style="width: 300px">Domain</th>
+            <th style="width: 250px">Domain</th>
             <th style="width: 50px">Available</th>
             <th style="width: 200px">Reserved At</th>
             <th style="width: 100px">Reserved By</th>
             <th style="width: 95px">Release</th>
             <th style="width: 95px">Reserve</th>
+            <th style="width: 25px">Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -58,14 +58,54 @@
                         <button class="reserve" type="submit">Reserve</button>
                     </form>
                 </td>
+                <td>
+                    <form action="/instances/delete" method="POST">
+                        <input type="hidden" name="id" value="{{ result.id }}">
+                        <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
+                        <button class="deleteBtn-available" type="submit">OK</button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
+            <tr>
+                <td colspan="7">
+                    <button id="showFormBtn" class="btn-available">Add +</button>
+                </td>
+            </tr>
     </tbody>
 </table>
+
 <h2>
     <form action="/sessions" method="POST">
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
-        <button class="btn-available" type="submit" value="logout">Log out</button>
+        <button class="reserve" type="submit" value="logout">Log out</button>
     </form>
 </h2>
+
+<div id="blurred" class="blurred-background"></div>
+<div id="addInstanceForm" class="add-form">
+    <form action="/instances/create" method="POST">
+        <h2>Add instance to pooling</h2>
+        <label for="domain">Domain</label>
+        <input type="text" placeholder="https://your-instance.com/" id="domain" name="domain" required>
+
+        <label style="margin-bottom: 10px;" for="pos_cli_token">pos_cli_token</label>
+        <input type="text" placeholder="paste your token here" id="pos_cli_token" name="pos_cli_token" required>
+
+        <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
+        <button class="btn-available" type="submit">Confirm</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("showFormBtn").addEventListener("click", function () {
+        document.getElementById("addInstanceForm").style.display = "block";
+        document.getElementById("blurred").style.display = "block";
+    });
+
+    document.getElementById("blurred").addEventListener("click", function () {
+        document.getElementById("addInstanceForm").style.display = "none";
+        this.style.display = "none";
+    });
+</script>

@@ -100,15 +100,3 @@ input {
     border-radius: 4px;
     text-align: center;
 }
-
-form.login {
-    text-align: center;
-    padding: 25px;
-    width: 300px;
-    border: 1px solid #ccc;
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0px 20px 50px rgba(25, 90, 5, 0.1);
-    margin: 300px 800px;
-
-
-}
