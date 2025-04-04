@@ -1,0 +1,11 @@
+---
+method: post
+slug: instances/create
+---
+
+{% liquid
+    include 'require_auth'
+
+    function _ = 'lib/commands/instances/create', domain: context.params.domain, pos_cli_token: context.params.pos_cli_token, available: true
+    redirect_to '/' 
+    %}
