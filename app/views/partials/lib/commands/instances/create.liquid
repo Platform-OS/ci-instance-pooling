@@ -1,6 +1,5 @@
 {% liquid 
       assign domain = domain | remove_first: "https://" | remove_last: "/"
-      log domain
       
       graphql r = 'instances/create', domain: domain, pos_cli_token: pos_cli_token, available: true
       return r
