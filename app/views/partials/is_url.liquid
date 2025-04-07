@@ -1,0 +1,4 @@
+{% liquid
+    assign is_url = url | matches: '^https?:\/\/[\S]+'
+    return is_url
+  %}  
