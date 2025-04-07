@@ -1,6 +1,10 @@
 {% liquid 
-      assign domain = domain | remove_first: "https://" | remove_last: "/"
-      
-      graphql r = 'instances/create', domain: domain, pos_cli_token: pos_cli_token, available: true
-      return r
-    %}
+  function object = 'lib/commands/instances/create/build', domain: domain, pos_cli_token: pos_cli_token, available: true
+  function object = 'lib/commands/instances/create/check', object: object  
+
+  if object.valid 
+    function object = 'lib/commands/instances/create/execute', object: object
+  endif
+
+  return object
+%}

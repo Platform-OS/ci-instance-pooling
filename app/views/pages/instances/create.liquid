@@ -1,11 +1,17 @@
 ---
 method: post
+layout: instances
 slug: instances
 ---
 
 {% liquid
-    include 'require_auth'
+  include 'require_auth'
 
-    function _ = 'lib/commands/instances/create', domain: context.params.domain, pos_cli_token: context.params.pos_cli_token, available: true
+  function object = 'lib/commands/instances/create', domain: context.params.domain, pos_cli_token: context.params.pos_cli_token, available: true 
+
+  if object.valid
     redirect_to '/' 
-    %}
+  else
+    theme_render_rc 'layout/new', errors: object.errors, domain: context.params.domain, pos_cli_token: context.params.pos_cli_token
+  endif
+%}

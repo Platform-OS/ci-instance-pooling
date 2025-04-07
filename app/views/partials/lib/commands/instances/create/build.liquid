@@ -1,0 +1,15 @@
+{% liquid 
+  assign providedDomain = domain
+  assign domain = domain | remove_first: "https://" | remove_last: "/"
+%}
+
+{% parse_json object %}
+  {
+    "domain": {{ domain | json }},
+    "providedDomain": {{ providedDomain | json }},
+    "pos_cli_token": {{ pos_cli_token | json }},
+    "available": {{ true | json  }}
+  }
+{% endparse_json %}
+  
+{% return object %}
