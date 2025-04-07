@@ -59,8 +59,8 @@
                     </form>
                 </td>
                 <td>
-                    <form action="/instances/delete" method="POST">
-                        <input type="hidden" name="id" value="{{ result.id }}">
+                    <form action="/instances/{{ result.id }}" method="post">
+                        <input type="hidden" name="_method" value="delete">
                         <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
                         <button class="deleteBtn-available" type="submit">OK</button>
                     </form>
