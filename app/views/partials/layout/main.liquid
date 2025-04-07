@@ -13,7 +13,7 @@
     </thead>
     <tbody>
         {% for result in results %}
-            <tr>
+            <tr class="active">
                 <td>
                     <a href="https://{{ result.domain }}" target="_blank">{{ result.domain }}</a>
                 </td>
@@ -67,9 +67,11 @@
                 </td>
             </tr>
         {% endfor %}
-            <tr>
+            <tr class="inactive">
                 <td colspan="7">
-                    <button id="showFormBtn" class="btn-available">Add +</button>
+                    <form action="/new">
+                        <button id="showFormBtn" class="btn-available">Add +</button>
+                    </form>
                 </td>
             </tr>
     </tbody>
@@ -82,30 +84,3 @@
         <button class="reserve" type="submit" value="logout">Log out</button>
     </form>
 </h2>
-
-<div id="blurred" class="blurred-background"></div>
-<div id="addInstanceForm" class="add-form">
-    <form action="/instances" method="POST">
-        <h2>Add instance to pooling</h2>
-        <label for="domain">Domain</label>
-        <input type="text" placeholder="https://your-instance.com/" id="domain" name="domain" required>
-
-        <label style="margin-bottom: 10px;" for="pos_cli_token">pos_cli_token</label>
-        <input type="text" placeholder="paste your token here" id="pos_cli_token" name="pos_cli_token" required>
-
-        <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
-        <button class="btn-available" type="submit">Confirm</button>
-    </form>
-</div>
-
-<script>
-    document.getElementById("showFormBtn").addEventListener("click", function () {
-        document.getElementById("addInstanceForm").style.display = "block";
-        document.getElementById("blurred").style.display = "block";
-    });
-
-    document.getElementById("blurred").addEventListener("click", function () {
-        document.getElementById("addInstanceForm").style.display = "none";
-        this.style.display = "none";
-    });
-</script>
