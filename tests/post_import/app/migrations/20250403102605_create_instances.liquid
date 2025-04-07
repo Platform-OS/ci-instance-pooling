@@ -17,6 +17,6 @@
 
 {% liquid 
   for instance in instances
-    graphql r = 'instances/create', domain: instance.domain, pos_cli_token: instance.pos_cli_token
+    graphql r = 'instances/create', domain: instance.domain, pos_cli_token: instance.pos_cli_token, available: true
   endfor
-  %}
+%}
