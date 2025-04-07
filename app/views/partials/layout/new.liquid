@@ -1,4 +1,3 @@
-<div id="blurred" style="display:block;" class="blurred-background"></div>
 <div id="addInstanceForm" style="display:block;" class="add-form">
     <form action="/instances" method="POST">
         <h2>Add instance to pooling</h2>
@@ -39,15 +38,3 @@
         <button class="btn-available" type="submit">Confirm</button>
     </form>
 </div>
-
-<script>
-    document.getElementById("showFormBtn").addEventListener("click", function () {
-        document.getElementById("addInstanceForm").style.display = "block";
-        document.getElementById("blurred").style.display = "block";
-    });
-
-    document.getElementById("blurred").addEventListener("click", function () {
-        document.getElementById("addInstanceForm").style.display = "none";
-        this.style.display = "none";
-    });
-</script>
