@@ -3,15 +3,16 @@ method: post
 slug: sessions
 ---
 {% liquid 
-    assign token = "Bearer " | append: context.params.token
-    function auth = 'lib/commands/authenticate/call', token: token
+  assign token = "Bearer " | append: context.params.token
 
-    unless auth.valid
-      include '401'
-      break
-    endunless
+  function auth = 'lib/commands/authenticate/call', token: token
 
-    session authenticated = "true"  
-    redirect_to "/"
-    %}
+  unless auth.valid
+    include '401'
+    break
+  endunless
+
+  session authenticated = "true"  
+  redirect_to "/"
+%}
 
