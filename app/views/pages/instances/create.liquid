@@ -11,6 +11,6 @@ slug: instances
   if object.valid
     redirect_to '/' 
   else
-    theme_render_rc 'layout/new', errors: object.errors, domain: context.params.domain, pos_cli_token: context.params.pos_cli_token
+    render 'instances/new', object: object
   endif
 %}

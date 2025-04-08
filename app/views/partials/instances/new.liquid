@@ -4,15 +4,15 @@
         <label for="domain">Domain</label>
         <input
           type="text"
-          {% if errors.domain %}style="border: 1px solid red;"{% endif %}
+          {% if object.errors.domain %}style="border: 1px solid red;"{% endif %}
           placeholder="https://your-instance.com/"
           id="domain"
           name="instance[domain]" 
-          value="{{ domain }}"
+          value="{{ object.domain }}"
           required>
-        {% if errors.domain %}
+        {% if object.errors.domain %}
           <small style="color: red;">Error(s): 
-          {% for error in errors.domain %}
+          {% for error in object.errors.domain %}
             {{ error }}, 
           {% endfor %}
           </small></br>
@@ -20,22 +20,19 @@
         <label style="margin-bottom: 10px;" for="pos_cli_token">pos_cli_token</label>
         <input 
           type="text"
-          {% if errors.pos_cli_token %}style="border: 1px solid red;"{% endif %}
+          {% if object.errors.pos_cli_token %}style="border: 1px solid red;"{% endif %}
           placeholder="paste your token here"
           id="pos_cli_token"
           name="instance[pos_cli_token]"
-          value="{{ pos_cli_token }}"
+          value="{{ object.pos_cli_token }}"
           required>
-        {% if errors.pos_cli_token %}
+        {% if errors.object.pos_cli_token %}
           <small style="color: red;">Error(s): 
-          {% for error in errors.pos_cli_token %}
+          {% for error in object.errors.pos_cli_token %}
               {{ error }}, 
           {% endfor %}
           </small></br>
-        {% endif %}
-
-        {% assign context.params.instance = %}
-    
+        {% endif %}    
         <input type="hidden">
         <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
         <button class="btn-available" type="submit">Confirm</button>
