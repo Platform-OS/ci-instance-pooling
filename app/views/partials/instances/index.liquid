@@ -1,19 +1,19 @@
-
 <table>
     <h2>Pooling results of <i>{{ context.location.host }}</i></h2>
     <thead>
         <tr>
-            <th style="width: 300px">Domain</th>
+            <th style="width: 250px">Domain</th>
             <th style="width: 50px">Available</th>
             <th style="width: 200px">Reserved At</th>
             <th style="width: 100px">Reserved By</th>
             <th style="width: 95px">Release</th>
             <th style="width: 95px">Reserve</th>
+            <th style="width: 25px">Delete</th>
         </tr>
     </thead>
     <tbody>
         {% for result in results %}
-            <tr>
+            <tr class="active">
                 <td>
                     <a href="https://{{ result.domain }}" target="_blank">{{ result.domain }}</a>
                 </td>
@@ -58,14 +58,30 @@
                         <button class="reserve" type="submit">Reserve</button>
                     </form>
                 </td>
+                <td>
+                    <form action="/instances/{{ result.id }}" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="domain" value="{{ result.domain }}">
+                        <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
+                        <button class="deleteBtn-available" type="submit">OK</button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
+            <tr class="inactive">
+                <td colspan="7">
+                    <form action="/instances/new">
+                        <button id="showFormBtn" class="btn-available">Add +</button>
+                    </form>
+                </td>
+            </tr>
     </tbody>
 </table>
+
 <h2>
     <form action="/sessions" method="POST">
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
-        <button class="btn-available" type="submit" value="logout">Log out</button>
+        <button class="reserve" type="submit" value="logout">Log out</button>
     </form>
 </h2>

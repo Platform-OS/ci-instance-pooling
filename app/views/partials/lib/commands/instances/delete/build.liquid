@@ -1,0 +1,10 @@
+{% parse_json object %}
+  {
+    "domain": {{ domain | json }},
+    "id": {{ id | json }}
+  }
+{% endparse_json %}
+
+{% log object %}
+
+{% return object %}

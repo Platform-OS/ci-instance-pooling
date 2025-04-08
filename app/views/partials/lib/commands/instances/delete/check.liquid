@@ -1,0 +1,14 @@
+{% liquid
+  assign c = '{ "valid": true, "errors": {} }' | parse_json
+
+  function c = 'modules/core/validations/exist_in_db', c: c, property_name: 'domain', property_value: object.domain, ids: object.id, table: 'instance', scope_name: null, exclude_name: null
+
+  if c.errors != blank
+    function c = 'modules/core/helpers/register_error', contract: c, field_name: 'domain', key: 'modules/core/validation.not_exist'
+  endif
+  
+  hash_assign object['valid'] = c.valid
+  hash_assign object['errors'] = c.errors
+
+  return object
+%}

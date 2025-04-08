@@ -1,0 +1,10 @@
+{% liquid 
+  function object = 'lib/commands/instances/create/build', object: instance
+  function object = 'lib/commands/instances/create/check', object: object
+
+  if object.valid 
+    function object = 'lib/commands/instances/create/execute', object: object
+  endif
+
+  return object
+%}

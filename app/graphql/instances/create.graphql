@@ -1,12 +1,13 @@
 mutation create(
   $domain: String!
   $pos_cli_token: String!
+  $available: Boolean
 ) {
   record_create(
     record: {
       table: "instance"
       properties: [
-        { name: "available", value_boolean: true }
+        { name: "available", value_boolean: $available }
         { name: "domain", value: $domain }
         { name: "pos_cli_token", value: $pos_cli_token }
       ]

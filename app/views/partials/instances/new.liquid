@@ -1,0 +1,40 @@
+<div id="addInstanceForm" style="display:block;" class="add-form">
+    <form action="/instances" method="POST">
+        <h2>Add instance to pooling</h2>
+        <label for="domain">Domain</label>
+        <input
+          type="text"
+          {% if object.errors.domain %}style="border: 1px solid red;"{% endif %}
+          placeholder="https://your-instance.com/"
+          id="domain"
+          name="instance[domain]" 
+          value="{{ object.domain }}"
+          required>
+        {% if object.errors.domain %}
+          <small style="color: red;">Error(s): 
+          {% for error in object.errors.domain %}
+            {{ error }}, 
+          {% endfor %}
+          </small></br>
+        {% endif %}
+        <label style="margin-bottom: 10px;" for="pos_cli_token">pos_cli_token</label>
+        <input 
+          type="text"
+          {% if object.errors.pos_cli_token %}style="border: 1px solid red;"{% endif %}
+          placeholder="paste your token here"
+          id="pos_cli_token"
+          name="instance[pos_cli_token]"
+          value="{{ object.pos_cli_token }}"
+          required>
+        {% if object.errors.pos_cli_token %}
+          <small style="color: red;">Error(s): 
+          {% for error in object.errors.pos_cli_token %}
+              {{ error }}, 
+          {% endfor %}
+          </small></br>
+        {% endif %}    
+        <input type="hidden">
+        <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
+        <button class="btn-available" type="submit">Confirm</button>
+    </form>
+</div>

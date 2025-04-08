@@ -1,0 +1,10 @@
+{% liquid 
+  function object = 'lib/commands/instances/delete/build', domain: domain, id: id
+  function object = 'lib/commands/instances/delete/check', object: object  
+  
+  if object.valid
+    function object = 'lib/commands/instances/delete/execute', object: object
+  endif
+
+  return object
+%}
