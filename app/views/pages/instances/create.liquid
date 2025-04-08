@@ -6,8 +6,7 @@ slug: instances
 
 {% liquid
   include 'require_auth'
-
-  function object = 'lib/commands/instances/create', domain: context.params.domain, pos_cli_token: context.params.pos_cli_token, available: true 
+  function object = 'lib/commands/instances/create', instance: context.params.instance
 
   if object.valid
     redirect_to '/' 

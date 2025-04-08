@@ -7,7 +7,7 @@
           {% if errors.domain %}style="border: 1px solid red;"{% endif %}
           placeholder="https://your-instance.com/"
           id="domain"
-          name="domain" 
+          name="instance[domain]" 
           value="{{ domain }}"
           required>
         {% if errors.domain %}
@@ -23,7 +23,7 @@
           {% if errors.pos_cli_token %}style="border: 1px solid red;"{% endif %}
           placeholder="paste your token here"
           id="pos_cli_token"
-          name="pos_cli_token"
+          name="instance[pos_cli_token]"
           value="{{ pos_cli_token }}"
           required>
         {% if errors.pos_cli_token %}
@@ -33,7 +33,10 @@
           {% endfor %}
           </small></br>
         {% endif %}
+
+        {% assign context.params.instance = %}
     
+        <input type="hidden">
         <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
         <button class="btn-available" type="submit">Confirm</button>
     </form>

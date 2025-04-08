@@ -1,5 +1,7 @@
 {% liquid 
-  function object = 'lib/commands/instances/create/build', domain: domain, pos_cli_token: pos_cli_token, available: true
+  assign object = instance
+
+  function object = 'lib/commands/instances/create/build', object: object
   function object = 'lib/commands/instances/create/check', object: object  
 
   if object.valid 

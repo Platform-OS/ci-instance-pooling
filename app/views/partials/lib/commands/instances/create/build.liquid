@@ -1,6 +1,7 @@
 {% liquid 
-  assign providedDomain = domain
-  assign domain = domain | remove_first: "https://" | remove_last: "/"
+  assign providedDomain = object.domain
+  assign domain = object.domain | remove_first: "https://" | remove_last: "/"
+  assign pos_cli_token = object.pos_cli_token
 %}
 
 {% parse_json object %}
