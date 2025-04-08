@@ -26,7 +26,7 @@
           name="instance[pos_cli_token]"
           value="{{ object.pos_cli_token }}"
           required>
-        {% if errors.object.pos_cli_token %}
+        {% if object.errors.pos_cli_token %}
           <small style="color: red;">Error(s): 
           {% for error in object.errors.pos_cli_token %}
               {{ error }}, 
