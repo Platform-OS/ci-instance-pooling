@@ -4,8 +4,13 @@ slug: instances/:id
 ---
 
 {% liquid
-    include 'require_auth'
+  include 'require_auth'
 
-    function _ = 'lib/commands/instances/delete', id: context.params.id
-    redirect_to '/' 
-    %}
+  function object = 'lib/commands/instances/delete', id: context.params.id, domain: context.params.domain
+
+  if object.valid
+    redirect_to '/'
+  else
+    include 'modules/core/helpers/redirect_to', url: '/', notice: "modules/core/validation.not_exist"
+  endif
+%}
