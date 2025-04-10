@@ -1,4 +1,4 @@
-name: Playwright E2E tests
+name: Playwright tests
 on:
   push:
     branches: [ main ]
@@ -102,6 +102,19 @@ jobs:
         if: success() || failure()
         with:
           test-name: api-tests
+        env:
+          HOME: /root
+          E2E_TEST_PASSWORD: ${{ env.E2E_TEST_PASSWORD }}
+          MPKIT_EMAIL: ${{ env.MPKIT_EMAIL }}
+          HTML_ATTACHMENTS_BASE_URL: ${{ env.HTML_ATTACHMENTS_BASE_URL }}
+          TEST_REPORT_MPKIT_URL: ${{ env.TEST_REPORT_MPKIT_URL }}
+          TEST_REPORT_MPKIT_TOKEN: ${{ env.TEST_REPORT_MPKIT_TOKEN }}
+
+      - uses: Platform-OS/gh-action-run-pw-test@dev
+        name: Run Playwright E2E tests
+        if: success() || failure()
+        with:
+          test-name: e2e-tests
         env:
           HOME: /root
           E2E_TEST_PASSWORD: ${{ env.E2E_TEST_PASSWORD }}
