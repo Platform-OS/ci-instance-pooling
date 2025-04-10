@@ -32,6 +32,7 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    { name: 'setup', testMatch: /.*\auth.setup\.ts/ },
     {
       name: 'api-tests',
       testMatch: /api-tests\.spec\.ts/,
@@ -47,7 +48,6 @@ export default defineConfig({
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
-
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
