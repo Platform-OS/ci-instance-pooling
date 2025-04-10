@@ -32,16 +32,22 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    { name: 'setup', testMatch: /.*\auth.setup\.ts/ },
     {
       name: 'api-tests',
       testMatch: /api-tests\.spec\.ts/,
       use: { ...devices['Desktop Chrome'] }
     },
     {
+      name: 'e2e-tests',
+      testMatch: /e2e-tests\.spec\.ts/,
+      use: { ...devices['Desktop Chrome'] },
+      dependencies: ['setup']
+    },
+    {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
-
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
