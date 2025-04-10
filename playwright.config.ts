@@ -38,6 +38,12 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] }
     },
     {
+      name: 'e2e-tests',
+      testMatch: /e2e-tests\.spec\.ts/,
+      use: { ...devices['Desktop Chrome'] },
+      dependencies: ['setup']
+    },
+    {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
