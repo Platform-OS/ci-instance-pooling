@@ -21,36 +21,3 @@ export class BasePage {
     await this.page.goto(this.path);
   };
 }
-
-//export class Navigation extends BasePage {
-//  readonly inbox: Locator;
-//  readonly inboxIndicator: (text: string) => Locator;
-//  readonly profileDropdownMenu: Locator;
-//  readonly profileDropdownImage: (text: string) => Locator;
-//  readonly profileDropdownInitials: (text: string) => Locator;
-//  readonly notificationBell: Locator;
-//  readonly notificationBellIndicator: (text: string) => Locator;
-//
-//  constructor(page: Page) {
-//    super(page, '');
-//    this.inbox = page.locator('#notifications-chat');
-//    this.inboxIndicator = (text: string) => this.inbox.locator('#notification-bell').getByText(text, { exact: true });
-//    this.profileDropdownMenu = page.locator('div[data-pos-initialized="true"]').nth(1);
-//    this.profileDropdownImage = (text: string) => this.profileDropdownMenu.locator(`img[src*="${text}"]`);
-//    this.profileDropdownInitials = (text: string) => this.profileDropdownMenu.getByText(text);
-//    this.notificationBell = this.buttonWithText('Notifications');
-//
-//    this.notificationBellIndicator = (text: string) => this.notificationBell.getByText(text);
-//  };
-//
-//  async logOut() {
-//    await this.profileDropdownMenu.click();
-//    await this.buttonWithText('Log Out').click();
-//    await this.page.waitForLoadState('networkidle');
-//    await this.page.evaluate(() => {
-//      const form = document.querySelector('form[action="/sessions"]') as HTMLFormElement;
-//      if (form) form.submit();
-//    });
-//    await this.page.waitForLoadState('networkidle');
-//  }
-//}
