@@ -44,6 +44,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: pos-cli
+        shell: sh
+        run: |
+          npm install -g @platformos/pos-cli
+
       - name: Deploy
         timeout-minutes: 10
         shell: sh
