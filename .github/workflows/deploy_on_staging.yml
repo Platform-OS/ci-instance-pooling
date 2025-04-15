@@ -1,0 +1,58 @@
+name: Deploy on staging
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - ".github/**"
+      - "tests/**"
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  pre_job:
+    # continue-on-error: true # Uncomment once integration is finished
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
+        with:
+          github_token: ${{ github.token }}
+          paths_ignore: '["**/README.md"]'
+          do_not_skip: '["push"]'
+
+  deploy:
+    if: ${{ github.ref_name == 'main' }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    timeout-minutes: 5
+    env:
+      MPKIT_EMAIL: ${{ secrets.MPKIT_EMAIL }}
+      MPKIT_TOKEN: ${{ secrets.MPKIT_STAGING_TOKEN }}
+      MPKIT_URL: https://ci-repository.staging.oregon.platform-os.com/
+      CI: true
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: setup node
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: pos-cli
+        shell: sh
+        run: |
+          npm install -g @platformos/pos-cli
+
+      - name: Deploy
+        timeout-minutes: 10
+        shell: sh
+        run: |
+          set -eu
+          rm app/pos-modules.*
+          pos-cli deploy
