@@ -1,4 +1,4 @@
-name: Deploy on staging
+name: Deploy on ps
 on:
   push:
     branches: [ main ]
