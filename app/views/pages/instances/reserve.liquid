@@ -6,5 +6,6 @@ slug: instances/reserve
 {% liquid
     include 'require_auth'
     function _ = 'lib/commands/instances/reserve', instance_id: params.result_id, reserved_by: "reserved_by_admin"
+    function _ = 'lib/commands/instances/update_logs', instance_id: params.result_id, domain: params.domain, reserved_by: "reserved_by_admin"
     redirect_to '/' 
     %}
