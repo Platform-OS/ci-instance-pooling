@@ -53,6 +53,7 @@
                 </td>
                 <td>
                     <form action="/instances/reserve" method="POST">
+                        <input type="hidden" name="domain" value="{{ result.domain }}">
                         <input type="hidden" name="result_id" value="{{ result.id }}">
                         <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
                         <button class="reserve" type="submit">Reserve</button>
@@ -77,6 +78,12 @@
             </tr>
     </tbody>
 </table>
+
+<h2>
+    <form action="/instances/logs">
+        <button class="reserve" type="submit" value="">logs</button>
+    </form>
+</h2>
 
 <h2>
     <form action="/sessions" method="POST">

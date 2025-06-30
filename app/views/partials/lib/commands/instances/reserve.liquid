@@ -1,5 +1,6 @@
 {% liquid
   assign input = '{}' | parse_json
+  hash_assign input['domain']          = domain
   hash_assign input['id']          = instance_id
   hash_assign input['reserved_by'] = reserved_by
   hash_assign input['reserved_at'] = 'now' | to_time | json | parse_json
