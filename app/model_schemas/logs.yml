@@ -1,5 +1,0 @@
-name: logs
-properties:
-  - name: domain
-  - name: reserved_by
-  - name: reserved_at
