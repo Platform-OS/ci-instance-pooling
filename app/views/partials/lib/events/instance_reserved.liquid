@@ -1,0 +1,15 @@
+---
+metadata:
+  event:
+    id
+    domain
+---
+
+{% liquid
+  assign c = '{ "errors": {}, "valid": true }' | parse_json
+
+  function c = 'modules/core/validations/presence', c: c, object: event, field_name: 'id'
+  function c = 'modules/core/validations/presence', c: c, object: event, field_name: 'domain'
+
+  return c
+%}

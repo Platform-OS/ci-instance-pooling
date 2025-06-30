@@ -1,0 +1,51 @@
+<h2>Events log</i></h2>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 250px">Domain</th>
+            <th style="width: 200px">Reserved At</th>
+            <th style="width: 100px">Reserved By</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for result in results %}
+            <tr class="active">
+                <td>
+                    <a href="https://{{ result.payload.domain }}" target="_blank">{{ result.payload.domain }}</a>
+                </td>
+                <td>
+                    {% if result.payload.reserved_at == null %}
+                        -
+                    {% else %}
+                        {{ result.payload.reserved_at | date: "%H:%M:%S, %d-%m-%Y" }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if result.payload.reserved_by == null %}
+                        -
+                    {% elsif result.payload.reserved_by == "reserved_by_admin" %}
+                        reserved by admin
+                    {% else %}
+                        {% assign parts = result.payload.reserved_by | split: "--" %}
+                        {% assign jobUrl = "https://github.com/" | append: parts[0] | append: "/" | append: parts[1] | append: "/actions/runs/" | append: parts[2] %}
+                        <a href="{{ jobUrl }}" target="_blank">{{ jobUrl }}</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>
+    <form action="/">
+        <button class="btn-available" type="submit" value="">Instances</button>
+    </form>
+</h2>
+
+<h2>
+    <form action="/sessions" method="POST">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
+        <button class="reserve" type="submit" value="logout">Log out</button>
+    </form>
+</h2>
