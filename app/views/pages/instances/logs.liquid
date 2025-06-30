@@ -1,0 +1,13 @@
+---
+layout: instances
+slug: instances/logs
+---
+
+{% liquid 
+    include 'require_auth'
+
+    function records = 'lib/queries/logs/search'
+    assign results = records.results
+    %}
+
+{% render 'instances/logs', results: results %}
