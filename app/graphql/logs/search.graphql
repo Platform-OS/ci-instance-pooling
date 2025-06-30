@@ -1,0 +1,30 @@
+query search(
+  $limit: Int = 20
+  $id: ID
+  $domain: String
+  $reserved_by: String
+  $reserved_at: String
+  $sort_order: SortOrderEnum = DESC
+) {
+  records(
+    per_page: $limit
+    filter: {
+      id: { value: $id }
+      table: { value: "logs" }
+      deleted_at: { exists: false }
+      properties: [
+        { name: "domain", value: $domain }
+        { name: "reserved_by", value: $reserved_by }
+        { name: "reserved_at", value: $reserved_at }
+      ]
+    }
+    sort: [{ id: { order: $sort_order } }]
+  ) {
+    results {
+      id
+      domain: property(name: "domain")
+      reserved_by: property(name: "reserved_by")
+      reserved_at: property(name: "reserved_at")
+    }
+  }
+}
