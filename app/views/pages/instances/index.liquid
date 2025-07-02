@@ -4,10 +4,12 @@ slug: /
 ---
 
 {% liquid 
-    include 'require_auth'
+  include 'require_auth'
 
-    function records = 'lib/queries/instances/search'
-    assign results = records.results
-    %}
+  function profile = 'modules/user/helpers/current_profile'
+    
+  function records = 'lib/queries/instances/search'
+  assign results = records.results
+%}
 
-{% render 'instances/index', results: results %}
+{% render 'instances/index', results: results, profile: profile %}
