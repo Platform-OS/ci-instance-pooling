@@ -4,6 +4,7 @@ import { BasePage } from './page';
 export class LogInPage extends BasePage {
   readonly page: Page;
   readonly url: string;
+  readonly emailInputField: Locator;
   readonly loginButton: Locator;
   readonly passwordInputField: Locator;
   readonly elementWithText: (text: string) => Locator;
@@ -12,11 +13,13 @@ export class LogInPage extends BasePage {
     super(page, '/sessions/new')
     this.page = page;
     this.elementWithText = (text) => page.getByText(text);
+    this.emailInputField = page.getByRole('textbox', { name: 'Email' });
     this.loginButton = page.getByRole('button', { name: 'Log In' });
-    this.passwordInputField = page.getByRole('textbox', { name: 'token' });
+    this.passwordInputField = page.getByRole('textbox', { name: 'Password' });
   }
 
-  async logIn(password: string) {
+  async logIn(email: string, password: string) {
+    await this.emailInputField.fill(email);
     await this.passwordInputField.fill(password);
     await this.loginButton.click();
   }

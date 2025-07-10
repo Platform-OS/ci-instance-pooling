@@ -21,7 +21,7 @@ export const instances = {
     domain: 'ci-instance2.example.com',
   },
   instanceReservedByApi: {
-    domain: 'ci-instance2.example.com',
+    domain: 'ci-instance1.example.com',
     reservedByUrl: 'https://github.com/ORG-name/projectName/actions/runs/jobId'
   }
 };
