@@ -1,4 +1,4 @@
-import { test as setup, expect } from '@playwright/test';
+import { test as setup } from '@playwright/test';
 import process from 'process';
 import { LogInPage } from './pages/login';
 import { users } from './data/users';
@@ -16,6 +16,8 @@ for (const user of usersToAuth) {
   
     await loginPage.goto();
     await loginPage.logIn(user.email, PASSWORD);
-    await page.context().storageState({ path: `tests/.auth/${user}.json` });
+
+    await page.getByText('Logged in as').waitFor();
+    await page.context().storageState({ path: `tests/.auth/${user.email}.json` });
   });
 }

@@ -15,7 +15,7 @@ test.describe('Log In tests', () => {
     await loginPage.goto();
     await loginPage.logIn(users.test1.email, PASSWORD);
 
-    await expect(page.getByText('pooling results of')).toBeVisible();
+    await page.getByText('Logged in as').waitFor();
   });
 
   test('should log out successfully', async ({ browser }) => {
