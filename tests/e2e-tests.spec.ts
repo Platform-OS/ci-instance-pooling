@@ -5,7 +5,7 @@ import { LogInPage } from './pages/login'
 import { users } from './data/users';
 import { instances } from './data/instances';
 
-const PASSWORD = process.env.E2E_TEST_PASSWORD;
+const PASSWORD = process.env.E2E_TEST_PASSWORD as string;
 const TOKEN = process.env.TEST_TOKEN;
 
 test.describe('Log In tests', () => {
