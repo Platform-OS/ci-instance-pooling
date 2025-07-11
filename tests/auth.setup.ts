@@ -16,8 +16,6 @@ for (const user of usersToAuth) {
   
     await loginPage.goto();
     await loginPage.logIn(user.email, PASSWORD);
-  
-    await page.getByText('pooling results of').waitFor();
     await page.context().storageState({ path: `tests/.auth/${user}.json` });
   });
 }
