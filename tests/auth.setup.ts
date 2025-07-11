@@ -1,22 +1,23 @@
 import { test as setup } from '@playwright/test';
 import process from 'process';
 import { LogInPage } from './pages/login';
+import { users } from './data/users';
 
-const PASSWORD = process.env.TEST_TOKEN;
+const PASSWORD = process.env.E2E_TEST_PASSWORD;
 if (!PASSWORD) {
-  throw new Error('TEST_TOKEN environment variable is not set');
+  throw new Error('E2E_TEST_PASSWORD environment variable is not set');
 }
 
-const users = ['user1', 'user2'];
+const usersToAuth = [users.test1, users.test2, users.test3];
 
-for (const user of users) {
-  setup(`authenticate ${user}`, async ({ page }) => {
+for (const user of usersToAuth) {
+  setup(`authenticate ${user.email}`, async ({ page }) => {
     const loginPage = new LogInPage(page);
   
     await loginPage.goto();
-    await loginPage.logIn(PASSWORD);
-  
-    await page.waitForURL('/');
-    await page.context().storageState({ path: `tests/.auth/${user}.json` });
+    await loginPage.logIn(user.email, PASSWORD);
+
+    await page.getByText('Logged in as').waitFor();
+    await page.context().storageState({ path: `tests/.auth/${user.email}.json` });
   });
 }

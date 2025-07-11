@@ -39,6 +39,12 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] }
     },
     {
+      name: 'prepare-env',
+      testMatch: /prepare-env\.spec\.ts/,
+      use: { ...devices['Desktop Chrome'] },
+      fullyParallel: false,
+    },
+    {
       name: 'e2e-tests',
       testMatch: /e2e-tests\.spec\.ts/,
       use: { ...devices['Desktop Chrome'] },

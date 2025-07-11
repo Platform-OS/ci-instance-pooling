@@ -3,12 +3,13 @@ layout: instances
 slug: instances/logs
 ---
 
-{% liquid 
-    include 'require_auth'
+{% liquid
 
-    graphql r = 'modules/core/events/search'
-    
-    assign results = r.activities.results
-    %}
+  include 'require_auth'  
+  graphql r = 'modules/core/events/search'
+  
+  assign results = r.activities.results
+  
+%}
 
 {% render 'instances/logs', results: results %}

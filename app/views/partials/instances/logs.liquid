@@ -9,6 +9,7 @@
     </thead>
     <tbody>
         {% for result in results %}
+          {% if result.payload.domain %}
             <tr class="active">
                 <td>
                     <a href="https://{{ result.payload.domain }}" target="_blank">{{ result.payload.domain }}</a>
@@ -23,15 +24,19 @@
                 <td>
                     {% if result.payload.reserved_by == null %}
                         -
-                    {% elsif result.payload.reserved_by == "reserved_by_admin" %}
-                        reserved by admin
                     {% else %}
-                        {% assign parts = result.payload.reserved_by | split: "--" %}
-                        {% assign jobUrl = "https://github.com/" | append: parts[0] | append: "/" | append: parts[1] | append: "/actions/runs/" | append: parts[2] %}
-                        <a href="{{ jobUrl }}" target="_blank">{{ jobUrl }}</a>
+                     {% graphql user_exists = 'modules/user/user/list', email: result.payload.reserved_by %}
+                     {% if user_exists.users.total_entries < 0 %}
+                       {% assign parts = result.payload.reserved_by | split: "--" %}
+                       {% assign jobUrl = "https://github.com/" | append: parts[0] | append: "/" | append: parts[1] | append: "/actions/runs/" | append: parts[2] %}
+                       <a href="{{ jobUrl }}" target="_blank">{{ jobUrl }}</a>
+                     {% else %}
+                       {{ result.payload.reserved_by }}
+                     {% endif %}
                     {% endif %}
                 </td>
             </tr>
+          {% endif %}
         {% endfor %}
     </tbody>
 </table>

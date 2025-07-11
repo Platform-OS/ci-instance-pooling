@@ -17,7 +17,7 @@ export const responses = {
         {
             "available": "true",
             "domain": "ci-instance1.example.com",
-            "id": "1",
+            "id": "4",
             "pos_cli_token": "instance1-e9s12fksx",
             "reserved_at": null,
             "reserved_by": null
@@ -25,7 +25,7 @@ export const responses = {
         {
             "available": "true",
             "domain": "ci-instance2.example.com",
-            "id": "2",
+            "id": "5",
             "pos_cli_token": "instance2-l1sz3x21m",
             "reserved_at": null,
             "reserved_by": null
@@ -33,7 +33,7 @@ export const responses = {
         {
             "available": "true",
             "domain": "ci-instance3.example.com",
-            "id": "3",
+            "id": "6",
             "pos_cli_token": "instance3-pq1w2s3f4",
             "reserved_at": null,
             "reserved_by": null
