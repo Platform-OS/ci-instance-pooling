@@ -77,6 +77,7 @@ jobs:
           MPKIT_TOKEN: ${{ steps.get-token.outputs.mpkit-token }}
         run: |
           set -eu
+          rm app/pos-modules.*
           ./tests/data/seed/seed.sh
 
 
