@@ -35,7 +35,7 @@
                         -
                     {% else %}
                      {% graphql user_exists = 'modules/user/user/list', email: result.reserved_by %}
-                     {% if user_exists.users.total_entries < 0 %}
+                     {% if user_exists.users.total_entries < 1 %}
                        {% assign parts = result.reserved_by | split: "--" %}
                        {% assign jobUrl = "https://github.com/" | append: parts[0] | append: "/" | append: parts[1] | append: "/actions/runs/" | append: parts[2] %}
                        <a href="{{ jobUrl }}" target="_blank">{{ jobUrl }}</a>
