@@ -34,13 +34,13 @@
                     {% if result.reserved_by == null %}
                         -
                     {% else %}
-                     {% graphql user_exists = 'modules/user/user/list', email: result.reserved_by %}
-                     {% if user_exists.users.total_entries < 1 %}
+                     {% graphql reserved_by_user = 'modules/user/user/search', email: result.reserved_by, include_profiles: true %}
+                     {% if reserved_by_user.users.results.size < 1 %}
                        {% assign parts = result.reserved_by | split: "--" %}
                        {% assign jobUrl = "https://github.com/" | append: parts[0] | append: "/" | append: parts[1] | append: "/actions/runs/" | append: parts[2] %}
                        <a href="{{ jobUrl }}" target="_blank">{{ jobUrl }}</a>
                      {% else %}
-                       {{ result.reserved_by }}
+                       {{ reserved_by_user.users.results[0].profiles[0].properties.name }}
                      {% endif %}
                     {% endif %}
                 </td>
@@ -59,7 +59,7 @@
                     <form action="/instances/reserve" method="POST">
                         <input type="hidden" name="domain" value="{{ result.domain }}">
                         <input type="hidden" name="result_id" value="{{ result.id }}">
-                        <input type="hidden" name="reserved_by" value="{{ profile.first_name }} {{ profile.last_name }}">
+                        <input type="hidden" name="reserved_by" value="{{ profile.email }}">
                         <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
                         <button class="reserve" type="submit">Reserve</button>
                     </form>
