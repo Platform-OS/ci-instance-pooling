@@ -25,13 +25,13 @@
                     {% if result.payload.reserved_by == null %}
                         -
                     {% else %}
-                     {% graphql user_exists = 'modules/user/user/list', email: result.payload.reserved_by %}
-                     {% if user_exists.users.total_entries < 0 %}
+                     {% graphql reserved_by_user = 'modules/user/user/search', email: result.payload.reserved_by, include_profiles: true %}
+                     {% if reserved_by_user.users.results.size < 1 %}
                        {% assign parts = result.payload.reserved_by | split: "--" %}
                        {% assign jobUrl = "https://github.com/" | append: parts[0] | append: "/" | append: parts[1] | append: "/actions/runs/" | append: parts[2] %}
                        <a href="{{ jobUrl }}" target="_blank">{{ jobUrl }}</a>
                      {% else %}
-                       {{ result.payload.reserved_by }}
+                       {{ reserved_by_user.users.results[0].profiles[0].properties.name }}
                      {% endif %}
                     {% endif %}
                 </td>
